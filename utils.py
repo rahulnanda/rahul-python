@@ -3,20 +3,18 @@ import os
 import fileinput
 import sys
 
+#This function searches for an 'old' string
+#and replaces it with 'new' string in all .py
+#files within the /home/ directory
 def search_and_replace(old, new):
     for root, dirs, files in os.walk('/home/'):
         for file in files:
-            if file.endswith(".c"): #check only .c files
+            if file.endswith(".py"): #check only .py files
                 print file
                 for line in fileinput.input(os.path.abspath(os.path.join(root,
                     file)), inplace=True):
                     if old in line:
                         line = line.replace(old, new)
-                        line = line.replace('log', 'log->log_level')
                     sys.stdout.write(line)
 
-def main():
-    replace_nginx_log('ngx_log_debug(', 'SE_DEBUG0(')
 
-if __name__ == '__main__':
-    main()
