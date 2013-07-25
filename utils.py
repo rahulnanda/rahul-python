@@ -10,7 +10,7 @@ def search_and_replace(old, new):
     for root, dirs, files in os.walk('/home/'):
         for file in files:
             if file.endswith(".py"): #check only .py files
-                print file
+                #print file
                 for line in fileinput.input(os.path.abspath(os.path.join(root,
                     file)), inplace=True):
                     if old in line:
